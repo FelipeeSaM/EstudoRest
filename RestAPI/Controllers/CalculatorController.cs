@@ -12,11 +12,33 @@ namespace RestAPI.Controllers {
         }
 
         [HttpGet("somar/{primeiroNumero}/{segundoNumero}")]
-        public IActionResult Get(string primeiroNumero, string segundoNumero) {
+        public IActionResult Somar(string primeiroNumero, string segundoNumero) {
 
             if(EhNumerico(primeiroNumero) && EhNumerico(segundoNumero)) {
                 var soma = ConverterParaDecimal(primeiroNumero) + ConverterParaDecimal(segundoNumero);
                 return Ok(soma.ToString());
+            }
+
+            return BadRequest("Alguma entrada inválida.");
+        }
+
+        [HttpGet("subtrair/{primeiroNumero}/{segundoNumero}")]
+        public IActionResult Subtrair(string primeiroNumero, string segundoNumero) {
+
+            if(EhNumerico(primeiroNumero) && EhNumerico(segundoNumero)) {
+                var subtracao = ConverterParaDecimal(primeiroNumero) - ConverterParaDecimal(segundoNumero);
+                return Ok(subtracao.ToString());
+            }
+
+            return BadRequest("Alguma entrada inválida.");
+        }
+
+        [HttpGet("dividir/{primeiroNumero}/{segundoNumero}")]
+        public IActionResult Dividir(string primeiroNumero, string segundoNumero) {
+
+            if(EhNumerico(primeiroNumero) && EhNumerico(segundoNumero)) {
+                var subtracao = ConverterParaDecimal(primeiroNumero) / ConverterParaDecimal(segundoNumero);
+                return Ok(subtracao.ToString());
             }
 
             return BadRequest("Alguma entrada inválida.");

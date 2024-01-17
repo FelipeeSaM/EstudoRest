@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using RestAPI.Model.restDbContext;
 using RestAPI.Servicos;
 using RestAPI.Servicos.Implementacoes;
 
@@ -6,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+var connection = builder.Configuration["SqlConnection:SqlConnectionString"];
+builder.Services.AddDbContext<rest_api_db_context>(options => options.UseSqlServer(connection));
 builder.Services.AddScoped<IPessoaService, PessoaServiceImplementation>();
 
 var app = builder.Build();

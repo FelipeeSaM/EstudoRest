@@ -22,7 +22,7 @@ namespace RestAPI.Controllers {
         }
 
         [HttpGet("{id}")]
-        public IActionResult ListarPorId(long id) {
+        public IActionResult ListarPorId(int id) {
             var pessoa = _pessoaServico.ProcurarPorId(id);
             if(pessoa == null) {
                 return NotFound();
@@ -32,7 +32,7 @@ namespace RestAPI.Controllers {
 
         [HttpPost]
         public IActionResult CriarPessoa([FromBody] Pessoa pessoa) {
-            if(pessoa == null) {
+            if(pessoa == null) {    
                 return BadRequest();
             }
             return Ok(_pessoaServico.CriarPessoa(pessoa));
@@ -47,7 +47,7 @@ namespace RestAPI.Controllers {
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeletarPessoa(long id) {
+        public IActionResult DeletarPessoa(int id) {
             if(id == null) {
                 return BadRequest();
             }

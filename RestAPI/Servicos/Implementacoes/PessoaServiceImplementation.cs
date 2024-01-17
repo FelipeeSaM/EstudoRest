@@ -1,46 +1,59 @@
 ﻿using RestAPI.Model;
+using RestAPI.Model.restDbContext;
 
 namespace RestAPI.Servicos.Implementacoes {
     public class PessoaServiceImplementation : IPessoaService {
-        private volatile int contador;
+        public rest_api_db_context _context;
+
+        public PessoaServiceImplementation(rest_api_db_context contexto)
+        {
+            _context = contexto;
+        }
+
+        public List<Pessoa> ListarTodasPessoas() {
+            return _context.pessoas.ToList();
+        }
+
+        public Pessoa ProcurarPorId(int id) {
+            return _context.pessoas.SingleOrDefault(c => c.Id.Equals(id));
+        }
 
         public Pessoa CriarPessoa(Pessoa pessoa) {
+            try {
+                _context.Add(pessoa);
+                _context.SaveChanges();
+            } catch (Exception) {
+                throw;
+            }
             return pessoa;
         }
 
         public Pessoa AtualizarPessoa(Pessoa pessoa) {
+            try {
+                Pessoa pessoa1 = ProcurarPorId(pessoa.Id);
+                if(pessoa1 != null) {
+                    _context.Entry(pessoa1).CurrentValues.SetValues(pessoa);
+                    _context.SaveChanges();
+                }
+            }
+            catch(Exception) {
+                throw;
+            }
             return pessoa;
         }
 
-        public void DeletarPessoa(long id) {
-            
-        }
-
-        public List<Pessoa> ListarTodasPessoas() {
-            List<Pessoa> pessoas = new List<Pessoa>();
-            for (int i = 0; i < 8; i++) {
-                Pessoa pessoaLista = MockPessoa(i);
-                pessoas.Add(pessoaLista);
+        public void DeletarPessoa(int id) {
+            try {
+                Pessoa pessoa1 = ProcurarPorId(id);
+                if(pessoa1 != null) {
+                    _context.pessoas.Remove(pessoa1);
+                    _context.SaveChanges();
+                }
             }
-            return pessoas;
+            catch(Exception) {
+                throw;
+            }
         }
 
-        public Pessoa ProcurarPorId(long id) {
-            return new Pessoa() { Id = Incrementar(), PrimeiroNome = "o cara", UltimoNome = "isso ai", Endereco = "logo ali", Genero = "m" };
-        }
-
-        private Pessoa MockPessoa(int i) {
-            return new Pessoa() {
-                Id = Incrementar(),
-                PrimeiroNome = "Pessoa" + i,
-                UltimoNome = "adsadas" + i,
-                Endereco = "aaaaaa" + i,
-                Genero = "m" 
-            };
-        }
-
-        private long Incrementar() {
-            return Interlocked.Increment(ref contador);
-        }
     }
 }

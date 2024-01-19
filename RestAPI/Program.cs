@@ -12,6 +12,8 @@ var connection = builder.Configuration["SqlConnection:SqlConnectionString"];
 builder.Services.AddDbContext<rest_api_db_context>(options => options.UseSqlServer(connection));
 builder.Services.AddScoped<IPessoaService, PessoaServiceImplementation>();
 
+builder.Services.AddApiVersioning();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

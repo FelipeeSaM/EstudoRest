@@ -33,7 +33,9 @@ namespace RestAPI.Business.Implementacoes {
 
         public Pessoa AtualizarPessoa(Pessoa pessoa) {
             try {
-                _repository.AtualizarPessoa(pessoa);
+                if(pessoa.Endereco == "Brasil") {
+                    _repository.AtualizarPessoa(pessoa);
+                }
             }
             catch(Exception) {
                 throw;

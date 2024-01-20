@@ -1,9 +1,8 @@
 ﻿using RestAPI.Model;
 
-namespace RestAPI.Servicos
+namespace RestAPI.Business
 {
-    public interface IPessoaService
-    {
+    public interface IPessoaBusiness {
         Pessoa CriarPessoa(Pessoa pessoa);
         Pessoa ProcurarPorId(int id);
         List<Pessoa> ListarTodasPessoas();

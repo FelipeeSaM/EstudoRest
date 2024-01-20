@@ -1,11 +1,11 @@
 ﻿using RestAPI.Model;
 using RestAPI.Model.restDbContext;
 
-namespace RestAPI.Servicos.Implementacoes {
-    public class PessoaServiceImplementation : IPessoaService {
+namespace RestAPI.Repository.Implementacoes {
+    public class PessoaRepositoryImplementation : IPessoaRepository {
         public rest_api_db_context _context;
 
-        public PessoaServiceImplementation(rest_api_db_context contexto)
+        public PessoaRepositoryImplementation(rest_api_db_context contexto)
         {
             _context = contexto;
         }
@@ -53,6 +53,10 @@ namespace RestAPI.Servicos.Implementacoes {
             catch(Exception) {
                 throw;
             }
+        }
+
+        public bool Existe(int id) {
+            return _context.pessoas.Any(c => c.Id.Equals(id));
         }
 
     }

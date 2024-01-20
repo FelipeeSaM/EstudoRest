@@ -1,7 +1,7 @@
 using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using RestAPI.Model;
-using RestAPI.Servicos;
+using RestAPI.Business;
 
 namespace RestAPI.Controllers {
     [ApiVersion("1")]
@@ -10,22 +10,22 @@ namespace RestAPI.Controllers {
     public class PessoaController : ControllerBase {
 
         private readonly ILogger<PessoaController> _logger;
-        private readonly IPessoaService _pessoaServico;
+        private readonly IPessoaBusiness _pessoaBusiness;
 
-        public PessoaController(ILogger<PessoaController> logger, IPessoaService pessoaServico) {
+        public PessoaController(ILogger<PessoaController> logger, IPessoaBusiness pessoaBusiness) {
             _logger = logger;
-            _pessoaServico = pessoaServico;
+            _pessoaBusiness = pessoaBusiness;
         }
 
         [HttpGet]
         public IActionResult ListarTodos() {
 
-            return Ok(_pessoaServico.ListarTodasPessoas());
+            return Ok(_pessoaBusiness.ListarTodasPessoas());
         }
 
         [HttpGet("{id}")]
         public IActionResult ListarPorId(int id) {
-            var pessoa = _pessoaServico.ProcurarPorId(id);
+            var pessoa = _pessoaBusiness.ProcurarPorId(id);
             if(pessoa == null) {
                 return NotFound();
             }
@@ -37,7 +37,7 @@ namespace RestAPI.Controllers {
             if(pessoa == null) {    
                 return BadRequest();
             }
-            return Ok(_pessoaServico.CriarPessoa(pessoa));
+            return Ok(_pessoaBusiness.CriarPessoa(pessoa));
         }
 
         [HttpPut]
@@ -45,7 +45,7 @@ namespace RestAPI.Controllers {
             if(pessoa == null) {
                 return BadRequest();
             }
-            return Ok(_pessoaServico.AtualizarPessoa(pessoa));
+            return Ok(_pessoaBusiness.AtualizarPessoa(pessoa));
         }
 
         [HttpDelete("{id}")]
@@ -53,7 +53,7 @@ namespace RestAPI.Controllers {
             if(id == null) {
                 return BadRequest();
             }
-            _pessoaServico.DeletarPessoa(id);
+            _pessoaBusiness.DeletarPessoa(id);
             return NoContent();
         }
     }

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RestAPI.Model.restDbContext;
 
@@ -10,9 +11,11 @@ using RestAPI.Model.restDbContext;
 namespace RestAPI.Migrations
 {
     [DbContext(typeof(rest_api_db_context))]
-    partial class rest_api_db_contextModelSnapshot : ModelSnapshot
+    [Migration("20240122090024_addSeederLivros")]
+    partial class addSeederLivros
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,7 +57,7 @@ namespace RestAPI.Migrations
                             Autor = "Autor 1",
                             Estoque = true,
                             Nome = "Livro 1",
-                            Preco = 18.989999999999998
+                            Preco = 19.989999771118164
                         },
                         new
                         {
@@ -62,7 +65,7 @@ namespace RestAPI.Migrations
                             Autor = "Autor 2",
                             Estoque = false,
                             Nome = "Livro 2",
-                            Preco = 28.989999999999998
+                            Preco = 29.989999771118164
                         },
                         new
                         {
@@ -70,7 +73,7 @@ namespace RestAPI.Migrations
                             Autor = "Autor 3",
                             Estoque = true,
                             Nome = "Livro 3",
-                            Preco = 38.990000000000002
+                            Preco = 39.990001678466797
                         },
                         new
                         {
@@ -78,7 +81,7 @@ namespace RestAPI.Migrations
                             Autor = "Autor 4",
                             Estoque = false,
                             Nome = "Livro 4",
-                            Preco = 48.990000000000002
+                            Preco = 49.990001678466797
                         },
                         new
                         {
@@ -86,7 +89,7 @@ namespace RestAPI.Migrations
                             Autor = "Autor 5",
                             Estoque = true,
                             Nome = "Livro 5",
-                            Preco = 58.990000000000002
+                            Preco = 59.990001678466797
                         },
                         new
                         {
@@ -94,7 +97,7 @@ namespace RestAPI.Migrations
                             Autor = "Autor 6",
                             Estoque = false,
                             Nome = "Livro 6",
-                            Preco = 68.989999999999995
+                            Preco = 69.989997863769531
                         });
                 });
 

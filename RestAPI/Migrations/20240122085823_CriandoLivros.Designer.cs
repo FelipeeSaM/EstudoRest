@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RestAPI.Model.restDbContext;
 
@@ -10,9 +11,11 @@ using RestAPI.Model.restDbContext;
 namespace RestAPI.Migrations
 {
     [DbContext(typeof(rest_api_db_context))]
-    partial class rest_api_db_contextModelSnapshot : ModelSnapshot
+    [Migration("20240122085823_CriandoLivros")]
+    partial class CriandoLivros
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,56 +49,6 @@ namespace RestAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("livros");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Autor = "Autor 1",
-                            Estoque = true,
-                            Nome = "Livro 1",
-                            Preco = 18.989999999999998
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Autor = "Autor 2",
-                            Estoque = false,
-                            Nome = "Livro 2",
-                            Preco = 28.989999999999998
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Autor = "Autor 3",
-                            Estoque = true,
-                            Nome = "Livro 3",
-                            Preco = 38.990000000000002
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Autor = "Autor 4",
-                            Estoque = false,
-                            Nome = "Livro 4",
-                            Preco = 48.990000000000002
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Autor = "Autor 5",
-                            Estoque = true,
-                            Nome = "Livro 5",
-                            Preco = 58.990000000000002
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Autor = "Autor 6",
-                            Estoque = false,
-                            Nome = "Livro 6",
-                            Preco = 68.989999999999995
-                        });
                 });
 
             modelBuilder.Entity("RestAPI.Model.Pessoa", b =>

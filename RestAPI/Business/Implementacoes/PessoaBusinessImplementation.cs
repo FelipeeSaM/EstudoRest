@@ -5,9 +5,9 @@ namespace RestAPI.Business.Implementacoes {
     public class PessoaBusinessImplementation : IPessoaBusiness {
         private readonly IPessoaRepository _repository;
         //Aqui vão as regras de negócio.
-        public PessoaBusinessImplementation(IPessoaRepository repository)
+        public PessoaBusinessImplementation(IPessoaRepository context)
         {
-            _repository = repository;
+            _repository = context;
         }
         
         public List<Pessoa> ListarTodasPessoas() {

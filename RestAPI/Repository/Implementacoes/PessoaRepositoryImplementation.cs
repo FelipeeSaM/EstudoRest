@@ -5,8 +5,7 @@ namespace RestAPI.Repository.Implementacoes {
     public class PessoaRepositoryImplementation : IPessoaRepository {
         public rest_api_db_context _context;
 
-        public PessoaRepositoryImplementation(rest_api_db_context contexto)
-        {
+        public PessoaRepositoryImplementation(rest_api_db_context contexto) {
             _context = contexto;
         }
 

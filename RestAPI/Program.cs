@@ -14,6 +14,8 @@ var connection = builder.Configuration["SqlConnection:SqlConnectionString"];
 builder.Services.AddDbContext<rest_api_db_context>(options => options.UseSqlServer(connection));
 builder.Services.AddScoped<IPessoaBusiness, PessoaBusinessImplementation>();
 builder.Services.AddScoped<IPessoaRepository, PessoaRepositoryImplementation>();
+builder.Services.AddScoped<ILivroBusiness, LivroBusinessImplementation>();
+builder.Services.AddScoped<ILivrosRepository, LivrosRepositoryImplementation>();
 
 builder.Services.AddApiVersioning();
 

@@ -1,6 +1,7 @@
-﻿namespace RestAPI.Model {
-    public class Livros {
-        public int Id { get; set; }
+﻿using RestAPI.Model.Base;
+
+namespace RestAPI.Model {
+    public class Livros : BaseModel {
         public string Nome { get; set; }
         public string Autor { get; set; }
         public double Preco { get; set; }

@@ -1,18 +1,19 @@
 ﻿using RestAPI.Model;
 using RestAPI.Repository;
+using RestAPI.Repository.Generic;
 
 namespace RestAPI.Business.Implementacoes {
     public class LivroBusinessImplementation : ILivroBusiness {
 
-        private readonly ILivrosRepository _context;
+        private readonly IGenericRepository<Livros> _context;
 
-        public LivroBusinessImplementation(ILivrosRepository context) {
+        public LivroBusinessImplementation(IGenericRepository<Livros> context) {
             _context = context;
         }
 
         public Livros BuscarLivroPorId(int id) {
             try {
-                return _context.BuscarLivroPorId(id);
+                return _context.BuscarPorId(id);
             }
             catch(Exception) {
 
@@ -22,7 +23,7 @@ namespace RestAPI.Business.Implementacoes {
 
         public List<Livros> BuscarTodosLivros() {
             try {
-                return _context.BuscarTodosLivros();
+                return _context.BuscarTodos();
             }
             catch(Exception) {
 
@@ -32,7 +33,7 @@ namespace RestAPI.Business.Implementacoes {
 
         public Livros AdicionarLivro(Livros livro) {
             try {
-                return _context.CriarLivro(livro);
+                return _context.Criar(livro);
             }
             catch(Exception) {
 
@@ -42,7 +43,7 @@ namespace RestAPI.Business.Implementacoes {
 
         public Livros AtualizarLivro(Livros livros) {
             try {
-                return _context.AtualizarLivro(livros);
+                return _context.Atualizar(livros);
             }
             catch(Exception) {
 
@@ -52,7 +53,7 @@ namespace RestAPI.Business.Implementacoes {
 
         public void DeletarLivro(int id) {
             try {
-                _context.DeletarLivro(id);
+                _context.Deletar(id);
             }
             catch(Exception) {
 

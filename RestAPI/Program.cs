@@ -4,6 +4,7 @@ using RestAPI.Business;
 using RestAPI.Business.Implementacoes;
 using RestAPI.Repository;
 using RestAPI.Repository.Implementacoes;
+using RestAPI.Repository.Generic;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,10 +13,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 var connection = builder.Configuration["SqlConnection:SqlConnectionString"];
 builder.Services.AddDbContext<rest_api_db_context>(options => options.UseSqlServer(connection));
-builder.Services.AddScoped<IPessoaBusiness, PessoaBusinessImplementation>();
-builder.Services.AddScoped<IPessoaRepository, PessoaRepositoryImplementation>();
+//builder.Services.AddScoped<IPessoaBusiness, PessoaBusinessImplementation>();
+//builder.Services.AddScoped<IPessoaRepository, PessoaRepositoryImplementation>();
 builder.Services.AddScoped<ILivroBusiness, LivroBusinessImplementation>();
-builder.Services.AddScoped<ILivrosRepository, LivrosRepositoryImplementation>();
+//builder.Services.AddScoped<ILivrosRepository, LivrosRepositoryImplementation>();
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
 builder.Services.AddApiVersioning();
 

@@ -5,8 +5,8 @@ namespace RestAPI.Repository.Generic {
     public interface IGenericRepository<T> where T : BaseModel {
         List<T> BuscarTodos();
         T BuscarPorId(int id);
-        T Criar(T livros);
-        T Atualizar(T livro);
+        T Criar(T item);
+        T Atualizar(T item);
         void Deletar(int id);
     }
 }

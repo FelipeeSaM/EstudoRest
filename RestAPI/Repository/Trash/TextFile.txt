@@ -1,1 +1,0 @@
-﻿Serão movidos para esta pasta arquivos que não serão mais usados devido a alteração de padrão de projeto, por exemplo, porém é importante deixá-los para aprendizado.

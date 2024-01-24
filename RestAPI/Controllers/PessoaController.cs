@@ -1,7 +1,7 @@
 using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
-using RestAPI.Model;
 using RestAPI.Business;
+using RestAPI.Data.DTO;
 
 namespace RestAPI.Controllers {
     [ApiVersion("1")]
@@ -33,7 +33,7 @@ namespace RestAPI.Controllers {
         }
 
         [HttpPost]
-        public IActionResult CriarPessoa([FromBody] Pessoa pessoa) {
+        public IActionResult CriarPessoa([FromBody] PessoaDTO pessoa) {
             if(pessoa == null) {    
                 return BadRequest();
             }
@@ -41,7 +41,7 @@ namespace RestAPI.Controllers {
         }
 
         [HttpPut]
-        public IActionResult AtualizarPessoa([FromBody] Pessoa pessoa) {
+        public IActionResult AtualizarPessoa([FromBody] PessoaDTO pessoa) {
             if(pessoa == null) {
                 return BadRequest();
             }

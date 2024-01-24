@@ -1,8 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using RestAPI.Model.Base;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RestAPI.Model {
-    public class Pessoa {
-        public int Id { get; set; }
+    public class Pessoa : BaseModel {
         public string PrimeiroNome { get; set; }
         public string UltimoNome { get; set; }
         public string Endereco { get; set; }

@@ -3,7 +3,6 @@ using RestAPI.Model.restDbContext;
 using RestAPI.Business;
 using RestAPI.Business.Implementacoes;
 using RestAPI.Repository;
-using RestAPI.Repository.Implementacoes;
 using RestAPI.Repository.Generic;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -21,7 +21,7 @@ builder.Services.AddSwaggerGen(c => {
         new OpenApiInfo {
             Title = "Estudando Rest",
             Version = "v1",
-            Description = "Estudando rest com o curso da udemy",
+            Description = "Curso: https://www.udemy.com/course/restful-apis-do-0-a-nuvem-com-aspnet-core-e-docker",
             Contact = new OpenApiContact {
                 Name = "Felipe",
                 Url = new Uri ("https://github.com/FelipeeSaM")
@@ -46,7 +46,7 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
-#region swager
+#region swagger
 app.UseSwagger();
 app.UseSwaggerUI(c => {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "swagger endpoints nome");

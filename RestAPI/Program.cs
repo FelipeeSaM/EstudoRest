@@ -12,6 +12,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddCors(options => options.AddDefaultPolicy(builder => {
+    builder.AllowAnyOrigin().AllowAnyOrigin().AllowAnyMethod();
+}));
+
 builder.Services.AddControllers();
 
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
@@ -45,6 +49,8 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 
 app.UseHttpsRedirection();
+
+app.UseCors();
 
 #region swagger
 app.UseSwagger();

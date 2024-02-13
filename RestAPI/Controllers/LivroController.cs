@@ -18,12 +18,20 @@ namespace RestAPI.Controllers {
         }
 
         [HttpGet]
+        [ProducesResponseType((200), Type = typeof(List<Livros>))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult ListarTodos() {
 
             return Ok(_livroBusiness.BuscarTodosLivros());
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType((200), Type = typeof(Livros))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult ListarPorId(int id) {
             var Livro = _livroBusiness.BuscarLivroPorId(id);
             if(Livro == null) {
@@ -33,6 +41,10 @@ namespace RestAPI.Controllers {
         }
 
         [HttpPost]
+        [ProducesResponseType((200), Type = typeof(Livros))]
+        [ProducesResponseType(201)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult CriarLivro([FromBody] Livros Livro) {
             if(Livro == null) {    
                 return BadRequest();
@@ -41,6 +53,9 @@ namespace RestAPI.Controllers {
         }
 
         [HttpPut]
+        [ProducesResponseType((200), Type = typeof(Livros))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult AtualizarLivro([FromBody] Livros Livro) {
             if(Livro == null) {
                 return BadRequest();
@@ -49,6 +64,9 @@ namespace RestAPI.Controllers {
         }
 
         [HttpDelete("{id}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult DeletarLivro(int id) {
             if(id == null) {
                 return BadRequest();

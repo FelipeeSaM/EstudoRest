@@ -5,12 +5,30 @@ using RestAPI.Business.Implementacoes;
 using RestAPI.Repository;
 using RestAPI.Repository.Implementacoes;
 using RestAPI.Repository.Generic;
+using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Rewrite;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(c => {
+    c.SwaggerDoc("v1",
+        new OpenApiInfo {
+            Title = "Estudando Rest",
+            Version = "v1",
+            Description = "Estudando rest com o curso da udemy",
+            Contact = new OpenApiContact {
+                Name = "Felipe",
+                Url = new Uri ("https://github.com/FelipeeSaM")
+            }
+        }
+    );
+});
+
 var connection = builder.Configuration["SqlConnection:SqlConnectionString"];
 builder.Services.AddDbContext<rest_api_db_context>(options => options.UseSqlServer(connection));
 builder.Services.AddScoped<IPessoaBusiness, PessoaBusinessImplementation>();
@@ -26,6 +44,17 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 
 app.UseHttpsRedirection();
+
+#region swager
+app.UseSwagger();
+app.UseSwaggerUI(c => {
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "swagger endpoints nome");
+});
+var option = new RewriteOptions();
+option.AddRedirect("^$", "swagger");
+app.UseRewriter(option);
+app.UseAuthentication();
+#endregion
 
 app.UseAuthorization();
 

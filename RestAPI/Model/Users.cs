@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace RestAPI.Model {
     public class Users {
+        [Key]
         public int Id { get; set; }
 
         [Required]

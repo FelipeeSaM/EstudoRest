@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RestAPI.Model.restDbContext;
 
@@ -11,9 +12,11 @@ using RestAPI.Model.restDbContext;
 namespace RestAPI.Migrations
 {
     [DbContext(typeof(rest_api_db_context))]
-    partial class rest_api_db_contextModelSnapshot : ModelSnapshot
+    [Migration("20240215215915_create_table_users3")]
+    partial class create_table_users3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

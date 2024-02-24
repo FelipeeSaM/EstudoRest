@@ -7,14 +7,49 @@ using RestAPI.Repository.Implementacoes;
 using RestAPI.Repository.Generic;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Rewrite;
+using RestAPI.Configurations.ServicesToken;
+using RestAPI.Configurations.ServicesToken.Implementations;
+using RestAPI.Configurations;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+#region jwt
+var tokenConfigs = new TokenConfiguration();
+new ConfigureFromConfigurationOptions<TokenConfiguration>(builder.Configuration.GetSection("TokenConfigurations")).Configure(tokenConfigs);
+builder.Services.AddSingleton(tokenConfigs);
 
 builder.Services.AddCors(options => options.AddDefaultPolicy(builder => {
     builder.AllowAnyOrigin().AllowAnyOrigin().AllowAnyMethod();
 }));
+
+builder.Services.AddAuthentication(options => {
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options => {
+    options.TokenValidationParameters = new TokenValidationParameters {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = tokenConfigs.Issuer,
+        ValidAudience = tokenConfigs.Audiencia,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenConfigs.Segredo))
+    };
+});
+
+builder.Services.AddAuthorization(auth => {
+    auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+        .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+        .RequireAuthenticatedUser().Build());
+});
+#endregion
 
 builder.Services.AddControllers();
 
@@ -41,6 +76,10 @@ builder.Services.AddScoped<IPessoaBusiness, PessoaBusinessImplementation>();
 builder.Services.AddScoped<ILivroBusiness, LivroBusinessImplementation>();
 //builder.Services.AddScoped<ILivrosRepository, LivrosRepositoryImplementation>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
+builder.Services.AddScoped<ILoginBusiness, LoginBusinessImplementation>();
+builder.Services.AddTransient<ITokenService, TokenService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddApiVersioning();
 

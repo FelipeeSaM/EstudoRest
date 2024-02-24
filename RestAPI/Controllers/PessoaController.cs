@@ -2,10 +2,12 @@ using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using RestAPI.Model;
 using RestAPI.Business;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RestAPI.Controllers {
     [ApiVersion("1")]
     [ApiController]
+    [Authorize("Bearer")]
     [Route("api/v{version:apiVersion}/[controller]")]
     public class PessoaController : ControllerBase {
 

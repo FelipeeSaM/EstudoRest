@@ -19,6 +19,10 @@ namespace RestAPI.Repository {
             return _context.users.FirstOrDefault(c => (c.UserName == user.UserName) && (c.Password == pass));
         }
 
+        public Users ValidateCredentials(string userName) {
+            return _context.users.SingleOrDefault(c => (c.UserName == userName));
+        }
+
         public Users AtualizarInfoUsuario(Users user) {
 
             if(!_context.users.Any(c => c.Id.Equals(user.Id))) return null;
@@ -43,5 +47,6 @@ namespace RestAPI.Repository {
             Byte[] hashedBytes = algoritmo.ComputeHash(inputBytes);
             return BitConverter.ToString(hashedBytes);
         }
+
     }
 }

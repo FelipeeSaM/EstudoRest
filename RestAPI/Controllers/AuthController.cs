@@ -6,7 +6,7 @@ using RestAPI.Data.DTO;
 
 namespace RestAPI.Controllers {
     [ApiVersion("1")]
-    [Route("api/[controller]/v{version:apiVersion}")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase {
 

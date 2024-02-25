@@ -59,7 +59,7 @@ namespace RestAPI.Repository {
                 builder.Append(item.ToString("x2"));
             }
 
-            return BitConverter.ToString(hashedBytes);
+            return builder.ToString();
         }
 
     }

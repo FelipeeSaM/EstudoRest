@@ -53,6 +53,7 @@ builder.Services.AddAuthorization(auth => {
 
 builder.Services.AddControllers();
 
+#region swagger
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c => {
@@ -68,6 +69,7 @@ builder.Services.AddSwaggerGen(c => {
         }
     );
 });
+#endregion
 
 var connection = builder.Configuration["SqlConnection:SqlConnectionString"];
 builder.Services.AddDbContext<rest_api_db_context>(options => options.UseSqlServer(connection));

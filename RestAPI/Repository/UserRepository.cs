@@ -14,12 +14,12 @@ namespace RestAPI.Repository {
             _context = context;
         }
 
-        public Users ValidateCredentials(UsersDTO user) {
-            var pass = ComputeHash(user.Password, new SHA256CryptoServiceProvider());
+        public Users? ValidateCredentials(UsersDTO user) {
+            var pass = ComputeHash(user.Password, SHA256.Create());
             return _context.users.FirstOrDefault(c => (c.UserName == user.UserName) && (c.Password == pass));
         }
 
-        public Users ValidateCredentials(string userName) {
+        public Users? ValidateCredentials(string userName) {
             return _context.users.SingleOrDefault(c => (c.UserName == userName));
         }
 
@@ -31,7 +31,7 @@ namespace RestAPI.Repository {
             return true;
         }
 
-        public Users AtualizarInfoUsuario(Users user) {
+        public Users? AtualizarInfoUsuario(Users user) {
 
             if(!_context.users.Any(c => c.Id.Equals(user.Id))) return null;
 
@@ -50,9 +50,15 @@ namespace RestAPI.Repository {
             return resultado;
         }
 
-        private string ComputeHash(string input, SHA256CryptoServiceProvider algoritmo) {
-            Byte[] inputBytes = Encoding.UTF8.GetBytes(input);
-            Byte[] hashedBytes = algoritmo.ComputeHash(inputBytes);
+        private string ComputeHash(string input, HashAlgorithm algoritmo) {
+            byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+            byte[] hashedBytes = algoritmo.ComputeHash(inputBytes);
+
+            var builder = new StringBuilder();
+            foreach(var item in hashedBytes) {
+                builder.Append(item.ToString("x2"));
+            }
+
             return BitConverter.ToString(hashedBytes);
         }
 

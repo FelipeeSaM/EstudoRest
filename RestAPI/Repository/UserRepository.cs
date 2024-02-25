@@ -23,6 +23,14 @@ namespace RestAPI.Repository {
             return _context.users.SingleOrDefault(c => (c.UserName == userName));
         }
 
+        public bool RevokeToken(string userName) {
+            var user = _context.users.SingleOrDefault(c => c.UserName == userName);
+            if(user == null) return false;
+            user.RefreshToken = null;
+            _context.SaveChanges();
+            return true;
+        }
+
         public Users AtualizarInfoUsuario(Users user) {
 
             if(!_context.users.Any(c => c.Id.Equals(user.Id))) return null;

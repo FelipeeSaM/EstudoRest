@@ -79,5 +79,9 @@ namespace RestAPI.Business.Implementacoes {
                 refreshToken
                 );
         }
+
+        public bool RevokeToken(string userName) {
+            return _repository.RevokeToken(userName);
+        }
     }
 }

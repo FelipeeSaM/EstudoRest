@@ -7,5 +7,6 @@ namespace RestAPI.Model {
         public string UltimoNome { get; set; }
         public string Endereco { get; set; }
         public string Genero { get; set; }
+        public bool Ativo { get; set; }
     }
 }

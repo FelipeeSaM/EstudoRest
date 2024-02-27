@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RestAPI.Model.restDbContext;
 
@@ -11,9 +12,11 @@ using RestAPI.Model.restDbContext;
 namespace RestAPI.Migrations
 {
     [DbContext(typeof(rest_api_db_context))]
-    partial class rest_api_db_contextModelSnapshot : ModelSnapshot
+    [Migration("20240227063717_add_coluna_ativo_pessoa")]
+    partial class add_coluna_ativo_pessoa
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -107,8 +110,8 @@ namespace RestAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("Ativo")
-                        .HasColumnType("bit");
+                    b.Property<byte>("Ativo")
+                        .HasColumnType("tinyint");
 
                     b.Property<string>("Endereco")
                         .IsRequired()
@@ -134,7 +137,7 @@ namespace RestAPI.Migrations
                         new
                         {
                             Id = 1,
-                            Ativo = false,
+                            Ativo = (byte)0,
                             Endereco = "Rua A",
                             Genero = "Masculino",
                             PrimeiroNome = "João",
@@ -143,7 +146,7 @@ namespace RestAPI.Migrations
                         new
                         {
                             Id = 2,
-                            Ativo = false,
+                            Ativo = (byte)0,
                             Endereco = "Rua B",
                             Genero = "Feminino",
                             PrimeiroNome = "Maria",
@@ -152,7 +155,7 @@ namespace RestAPI.Migrations
                         new
                         {
                             Id = 3,
-                            Ativo = false,
+                            Ativo = (byte)0,
                             Endereco = "Rua C",
                             Genero = "Masculino",
                             PrimeiroNome = "Pedro",
@@ -161,7 +164,7 @@ namespace RestAPI.Migrations
                         new
                         {
                             Id = 4,
-                            Ativo = false,
+                            Ativo = (byte)0,
                             Endereco = "Rua D",
                             Genero = "Feminino",
                             PrimeiroNome = "Ana",
@@ -170,7 +173,7 @@ namespace RestAPI.Migrations
                         new
                         {
                             Id = 5,
-                            Ativo = false,
+                            Ativo = (byte)0,
                             Endereco = "Rua E",
                             Genero = "Masculino",
                             PrimeiroNome = "Lucas",
@@ -220,7 +223,7 @@ namespace RestAPI.Migrations
                             FullName = "jonas e a baleia",
                             Password = "24-0B-E5-18-FA-BD-27-24-DD-B6-F0-4E-EB-1D-A5-96-74-48-D7-E8-31-C0-8C-8F-A8-22-80-9F-74-C7-20-A9",
                             RefreshToken = "h9lzVOoLlBoTbcQrh/e16/aIj+4p6C67lLdDbBRMsjE=",
-                            RefreshTokenExpiryTime = new DateTime(2024, 2, 27, 3, 40, 0, 878, DateTimeKind.Local).AddTicks(5612),
+                            RefreshTokenExpiryTime = new DateTime(2024, 2, 27, 3, 37, 17, 586, DateTimeKind.Local).AddTicks(8843),
                             UserName = "eu mesmo"
                         });
                 });

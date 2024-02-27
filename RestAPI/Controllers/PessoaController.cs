@@ -50,6 +50,13 @@ namespace RestAPI.Controllers {
             return Ok(_pessoaBusiness.AtualizarPessoa(pessoa));
         }
 
+        [HttpPatch("{id}")]
+        public IActionResult PatchPessoa(long id) {
+            var pessoa = _pessoaBusiness.AtivarOuDesativar(id);
+            if(pessoa == null) return NotFound();
+            return Ok(pessoa);
+        }
+
         [HttpDelete("{id}")]
         public IActionResult DeletarPessoa(int id) {
             if(id == null) {

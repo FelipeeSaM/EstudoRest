@@ -5,10 +5,10 @@ using RestAPI.Repository.Generic;
 
 namespace RestAPI.Business.Implementacoes {
     public class PessoaBusinessImplementation : IPessoaBusiness {
-        private readonly IGenericRepository<Pessoa> _repository;
+        private readonly IPessoaRepository _repository;
 
         //Aqui vão as regras de negócio.
-        public PessoaBusinessImplementation(IGenericRepository<Pessoa> context) {
+        public PessoaBusinessImplementation(IPessoaRepository context) {
             _repository = context;
         }
         
@@ -43,6 +43,11 @@ namespace RestAPI.Business.Implementacoes {
                 throw;
             }
             return pessoa;
+        }
+
+        public Pessoa AtivarOuDesativar(long id) {
+            var operacao = _repository.AtivarOuDesativar(id);
+            return operacao;
         }
 
         public void DeletarPessoa(int id) {

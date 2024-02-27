@@ -6,7 +6,7 @@ using RestAPI.Model.restDbContext;
 namespace RestAPI.Repository.Generic {
     public class GenericRepository<T> : IGenericRepository<T> where T : BaseModel{
 
-        private readonly rest_api_db_context _context;
+        protected readonly rest_api_db_context _context;
         
         private readonly DbSet<T> _dbSet;
 

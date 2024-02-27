@@ -7,6 +7,7 @@ namespace RestAPI.Business
         Pessoa ProcurarPorId(int id);
         List<Pessoa> ListarTodasPessoas();
         Pessoa AtualizarPessoa(Pessoa pessoa);
+        Pessoa AtivarOuDesativar(long id);
         void DeletarPessoa(int id);
     }
 }

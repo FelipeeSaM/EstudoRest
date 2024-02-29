@@ -22,5 +22,15 @@ namespace RestAPI.Repository {
             }
             return usuario;
         }
+
+        public List<Pessoa> PesquisarPorNome(string primeiroNome, string ultimoNome) {
+            if(!string.IsNullOrWhiteSpace(primeiroNome) || !string.IsNullOrWhiteSpace(ultimoNome)) {
+                return _context.pessoas
+                    .Where(c =>
+                        (string.IsNullOrWhiteSpace(primeiroNome) || c.PrimeiroNome.Contains(primeiroNome)) &&
+                        (string.IsNullOrWhiteSpace(ultimoNome) || c.UltimoNome.Contains(ultimoNome))).ToList();
+            }
+            return null;
+        }
     }
 }

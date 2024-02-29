@@ -8,5 +8,7 @@ namespace RestAPI.Repository.Generic {
         T Criar(T item);
         T Atualizar(T item);
         void Deletar(int id);
+        List<T> ProcurarPaginacao(string query);
+        int ReceberPaginacao(string query);
     }
 }

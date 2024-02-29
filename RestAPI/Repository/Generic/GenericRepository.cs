@@ -78,5 +78,21 @@ namespace RestAPI.Repository.Generic {
                 throw;
             }
         }
+
+        public List<T> ProcurarPaginacao(string query) {
+            return _dbSet.FromSqlRaw<T>(query).ToList();
+        }
+
+        public int ReceberPaginacao(string query) {
+            var result = "";
+            using (var conn = _context.Database.GetDbConnection()) {
+                conn.Open();
+                using (var command = conn.CreateCommand()) {
+                    command.CommandText = query;
+                    result = command.ExecuteScalar().ToString();
+                }
+            }
+            return int.Parse(result);
+        }
     }
 }

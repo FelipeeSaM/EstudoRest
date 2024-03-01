@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -73,10 +74,13 @@ builder.Services.AddSwaggerGen(c => {
 
 var connection = builder.Configuration["SqlConnection:SqlConnectionString"];
 builder.Services.AddDbContext<rest_api_db_context>(options => options.UseSqlServer(connection));
+builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
 builder.Services.AddScoped<IPessoaBusiness, PessoaBusinessImplementation>();
 //builder.Services.AddScoped<IPessoaRepository, PessoaRepositoryImplementation>();
 builder.Services.AddScoped<IPessoaRepository, PessoaRepository>();
 builder.Services.AddScoped<ILivroBusiness, LivroBusinessImplementation>();
+builder.Services.AddScoped<IArquivoBusiness, ArquivoBusinessImplementation>();
 //builder.Services.AddScoped<ILivrosRepository, LivrosRepositoryImplementation>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 

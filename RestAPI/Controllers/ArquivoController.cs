@@ -22,5 +22,12 @@ namespace RestAPI.Controllers {
             Arquivo arquivo = await _arquivoBusiness.SalvarArquivoDisco(arquivoUpload);
             return new OkObjectResult(arquivo);
         }
+
+        [HttpPost("uploadVariosArquivos")]
+        [Produces("application/json")]
+        public async Task<IActionResult> SalvarVariosArquivos([FromForm] List<IFormFile> arquivoUpload) {
+            List<Arquivo> arquivo = await _arquivoBusiness.SalvarMultiplosArquivosDisco(arquivoUpload);
+            return new OkObjectResult(arquivo);
+        }
     }
 }

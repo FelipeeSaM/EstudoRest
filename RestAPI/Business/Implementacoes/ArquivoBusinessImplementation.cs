@@ -30,7 +30,7 @@ namespace RestAPI.Business.Implementacoes {
                     var destino = Path.Combine(caminhoArquivo, "", arquivoNome);
                     arquivoDetalhes.DocumentoNome = arquivoNome;
                     arquivoDetalhes.DocumentoTipo = arquivoTipo;
-                    arquivoDetalhes.DocumentoUrl = Path.Combine(baseUrl + "/api/v1/arquivo" + arquivoDetalhes.DocumentoNome);
+                    arquivoDetalhes.DocumentoUrl = Path.Combine(baseUrl + "/api/v1/arquivo/" + arquivoDetalhes.DocumentoNome);
 
                     using var stream = new FileStream(destino, FileMode.Create);
                     await arquivo.CopyToAsync(stream);
@@ -39,8 +39,14 @@ namespace RestAPI.Business.Implementacoes {
             return arquivoDetalhes;
         }
 
-        public Task<List<Arquivo>> SalvarMultiplosArquivosDisco(IList<IFormFile> arquivos) {
-            throw new NotImplementedException();
+        public async Task<List<Arquivo>> SalvarMultiplosArquivosDisco(IList<IFormFile> arquivos) {
+            List<Arquivo> listaArquivos = new List<Arquivo>();
+
+            foreach(var arquivo in arquivos) {
+                listaArquivos.Add(await SalvarArquivoDisco(arquivo));
+            }
+
+            return listaArquivos;
         }
     }
 }

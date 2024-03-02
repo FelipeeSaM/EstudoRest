@@ -16,6 +16,19 @@ namespace RestAPI.Controllers {
             _arquivoBusiness = arquivo;
         }
 
+        [HttpPost("downloadArquivo/{nomearquivo}")]
+        [Produces("application/octet-stream")]
+        public async Task<IActionResult> BaixarArquivoAsync(string nomeArquivo) {
+            byte[] buffer = _arquivoBusiness.PegarArquivo(nomeArquivo);
+            if(buffer != null) {
+                HttpContext.Response.ContentType = $"application/{Path.GetExtension(nomeArquivo).Replace(".", "")}";
+                HttpContext.Response.Headers.Add("content-length", buffer.Length.ToString());
+                HttpContext.Response.Headers.Add("oi", "sss");
+                await HttpContext.Response.Body.WriteAsync(buffer, 0, buffer.Length);
+            }
+            return new ContentResult();
+        }
+
         [HttpPost("uploadArquivo")]
         [Produces("application/json")]
         public async Task<IActionResult> SalvarUmArquivo([FromForm] IFormFile arquivoUpload) {

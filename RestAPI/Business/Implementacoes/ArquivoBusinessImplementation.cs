@@ -12,7 +12,8 @@ namespace RestAPI.Business.Implementacoes {
         }
 
         public byte[] PegarArquivo(string arquivonome) {
-            throw new NotImplementedException();
+            var caminho = caminhoArquivo + arquivonome;
+            return File.ReadAllBytes(caminho);
         }
 
         public async Task<Arquivo> SalvarArquivoDisco(IFormFile arquivo) {

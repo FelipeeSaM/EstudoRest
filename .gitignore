@@ -77,7 +77,7 @@ artifacts/
 *.dtbcache.V2
 *.suo
 *.cache
-*.json
+
 *.props
 *.targets
 *.dll

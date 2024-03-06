@@ -16,9 +16,10 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using BenchmarkDotNet.Running;
 
 var builder = WebApplication.CreateBuilder(args);
-
+var summary = BenchmarkRunner.Run<TestandoBenchMark>();
 // Add services to the container.
 #region jwt
 var tokenConfigs = new TokenConfiguration();

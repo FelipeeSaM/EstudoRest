@@ -1,8 +1,8 @@
 import React from 'react';
-import Header from '../src/Components/Header'
+import Routes from './routes'
 
 export default function App() {
     return (
-        <Header title="react api rest" />
+        < Routes />
     );
 }

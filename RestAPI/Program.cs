@@ -27,7 +27,7 @@ new ConfigureFromConfigurationOptions<TokenConfiguration>(builder.Configuration.
 builder.Services.AddSingleton(tokenConfigs);
 
 builder.Services.AddCors(options => options.AddDefaultPolicy(builder => {
-    builder.AllowAnyOrigin().AllowAnyOrigin().AllowAnyMethod();
+    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
 }));
 
 builder.Services.AddAuthentication(options => {

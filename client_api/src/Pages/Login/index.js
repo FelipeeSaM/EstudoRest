@@ -23,7 +23,7 @@ export default function Login(props) {
 
             navigate("/books");
         } catch(error) {
-            console.log(error)
+            alert("n deu")
         }
     }
 

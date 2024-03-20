@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace RestAPI.Controllers {
     [ApiVersion("1")]
     [ApiController]
-    [Authorize("Bearer")]
+    //[Authorize("Bearer")]
     [Route("api/v{version:apiVersion}/[controller]")]
     public class LivroController : ControllerBase {
 

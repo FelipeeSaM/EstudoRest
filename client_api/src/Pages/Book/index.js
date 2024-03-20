@@ -6,7 +6,7 @@ export default function Book() {
         <div className="BookContainer">
             <header>
                 <span>Bem vindo, <strong>usuario</strong></span>
-                <Link className="button" to="book/new">Adicionar novo livro</Link>
+                <Link className="button" to="/books/new">Adicionar novo livro</Link>
                 <button type="button">clique aqui</button>
             </header>
 

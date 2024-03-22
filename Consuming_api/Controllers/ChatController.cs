@@ -20,7 +20,7 @@ namespace Consuming_api.Controllers {
 
             var completion = new CompletionRequest {
                 Prompt = prompt,
-                Model = Model.ChatGPTTurbo_16k,
+                Model = Model.DavinciText,
                 MaxTokens = 200
             };
 

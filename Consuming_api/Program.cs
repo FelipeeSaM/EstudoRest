@@ -9,7 +9,6 @@ builder.AddSerilog(builder.Configuration, "Consumindo API do gpt com .net 8");
 
 builder.Services.AddControllers();
 builder.Services.AddSwagger(builder.Configuration);
-builder.Services.AddScoped<OpenAIAPI>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -8,7 +8,7 @@ namespace Consuming_api.Extensions {
             var key = Environment.GetEnvironmentVariable("OPENAI_API_KEY");
 
             var chat = new OpenAIAPI(key);
-            builder.Services.AddSingleton(key);
+            builder.Services.AddScoped<OpenAIAPI>();
 
             return builder;
         }

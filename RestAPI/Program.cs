@@ -94,7 +94,7 @@ builder.Services.AddApiVersioning();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-
+DatabaseManagementService.MigrationInitializer(app);
 app.UseHttpsRedirection();
 
 app.UseCors();

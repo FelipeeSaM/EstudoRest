@@ -42,7 +42,8 @@ namespace RestAPI.Model.restDbContext {
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
             //optionsBuilder.UseSqlServer("Data Source=DESKTOP-TF0LNRF\\SQLEXPRESS2019;Initial Catalog=rest_api_estudo;Integrated Security=True;TrustServerCertificate=True");
-            optionsBuilder.UseSqlServer("Data Source=localhost,1200;Database=rest_api_docker_;Trusted_Connection=False;User Id=SA;Password=admin123!; MultipleActiveResultSets=true;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("Data Source=localhost,1200;Database=rest_api_docker_;Trusted_Connection=False;User Id=SA;Password=admin123!; MultipleActiveResultSets=true;TrustServerCertificate=True"); // ;TrustServerCertificate=True <<<
+            // localhost, 1200 => faço com que a minha aplicação na porta 1200 se comunique com a porta 1433 do sql server no docker (configurado na linha de comando do docker run etc.)
         }
     }
 }

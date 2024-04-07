@@ -94,11 +94,7 @@ builder.Services.AddApiVersioning();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-//DatabaseManagementService.MigrationInitializer(app);
-
-//var scope = app.Services.CreateScope();
-//var dbContext = scope.ServiceProvider.GetRequiredService<rest_api_db_context>();
-//dbContext.Database.EnsureCreated();
+// 2 - chamo o método aqui
 app.MigrationInitializer();
 
 app.UseHttpsRedirection();

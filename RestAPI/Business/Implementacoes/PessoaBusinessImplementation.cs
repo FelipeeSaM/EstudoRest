@@ -63,9 +63,9 @@ namespace RestAPI.Business.Implementacoes {
         public Pessoa CriarPessoa(Pessoa pessoa) {
             try {
                 // Um exemplo de regra de negócio criada
-                if(pessoa.Genero == "masc") {
+                //if(pessoa.Genero == "masc") {
                     _repository.Criar(pessoa);
-                }
+                //}
             } catch (Exception) {
                 throw;
             }

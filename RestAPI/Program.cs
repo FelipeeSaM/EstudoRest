@@ -73,7 +73,7 @@ builder.Services.AddSwaggerGen(c => {
 });
 #endregion
 
-var connection = builder.Configuration["SqlConnection:SqlConnectionString"];
+var connection = builder.Configuration["MSSQLConnection:MSSQLConnectionString"];
 builder.Services.AddDbContext<rest_api_db_context>(options => options.UseSqlServer(connection));
 builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
@@ -94,7 +94,13 @@ builder.Services.AddApiVersioning();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-DatabaseManagementService.MigrationInitializer(app);
+//DatabaseManagementService.MigrationInitializer(app);
+
+//var scope = app.Services.CreateScope();
+//var dbContext = scope.ServiceProvider.GetRequiredService<rest_api_db_context>();
+//dbContext.Database.EnsureCreated();
+app.MigrationInitializer();
+
 app.UseHttpsRedirection();
 
 app.UseCors();

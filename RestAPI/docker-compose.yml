@@ -1,0 +1,32 @@
+﻿services:
+  api:
+    container_name: rest-api-app-yt
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - 4652:8080
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on: ["restapi-sql-yt"]
+    networks:
+      rest-api-networks:
+    
+  restapi-sql-yt:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - "ACCEPT_EULA=1"
+      - "MSSQL_SA_PASSWORD=admin123!"
+    volumes:
+      - "rest-api-volume-db:/var/opt/mssql"
+    networks:
+      rest-api-networks:
+        aliases:
+          - "sql-contexto"
+
+volumes:
+  rest-api-volume-db:
+  
+networks:
+    rest-api-networks:
+      driver: bridge

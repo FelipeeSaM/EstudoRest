@@ -41,7 +41,7 @@ namespace RestAPI.Model.restDbContext {
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
-            optionsBuilder.UseSqlServer("Data Source=DESKTOP-TF0LNRF\\SQLEXPRESS2019;Initial Catalog=rest_api_estudo;Integrated Security=True;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("Server=sql-contexto;Integrated Security=True;TrustServerCertificate=True;User ID=sa;Password=admin123!");
         }
     }
 }
